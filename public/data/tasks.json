@@ -1,0 +1,46 @@
+[
+    {
+        "id": "t-1",
+        "title": "Create Ad Creatives (3 ads for Ad Set 1)",
+        "client": "LeakProof System",
+        "dueDate": "2026-02-24T00:00:00Z",
+        "isUrgent": true,
+        "status": "in_progress",
+        "createdAt": "2026-02-23T04:00:00Z",
+        "updatedAt": "2026-02-23T04:00:00Z",
+        "notes": "3 angles: Pain/Problem, Outcome/Vision, Risk Reversal/Proof"
+    },
+    {
+        "id": "t-2",
+        "title": "Finalize Facebook Ad Sets",
+        "client": "LeakProof System",
+        "dueDate": "2026-02-24T00:00:00Z",
+        "isUrgent": true,
+        "status": "todo",
+        "createdAt": "2026-02-23T04:00:00Z",
+        "updatedAt": "2026-02-23T04:00:00Z",
+        "notes": "2 ad sets, upload creatives once done"
+    },
+    {
+        "id": "t-3",
+        "title": "Launch Facebook Ads",
+        "client": "LeakProof System",
+        "dueDate": "2026-02-25T00:00:00Z",
+        "isUrgent": false,
+        "status": "todo",
+        "createdAt": "2026-02-23T04:00:00Z",
+        "updatedAt": "2026-02-23T04:00:00Z",
+        "notes": "Go live once creatives approved"
+    },
+    {
+        "id": "t-4",
+        "title": "Set up lead intake system in GHL",
+        "client": "LeakProof System",
+        "dueDate": "2026-02-26T00:00:00Z",
+        "isUrgent": false,
+        "status": "todo",
+        "createdAt": "2026-02-23T04:00:00Z",
+        "updatedAt": "2026-02-23T04:00:00Z",
+        "notes": "Form submissions → pipeline → automated follow-up"
+    }
+]

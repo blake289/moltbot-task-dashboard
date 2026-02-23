@@ -1,58 +1,158 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Layout } from './components/layout/Layout';
 import { PrimaryBottleneck } from './components/dashboard/PrimaryBottleneck';
 import { UrgentQueue } from './components/dashboard/UrgentQueue';
 import { Schedule } from './components/dashboard/Schedule';
 import { MetricsStrip } from './components/dashboard/MetricsStrip';
 import { TaskBacklog } from './components/dashboard/TaskBacklog';
-import { INITIAL_TASKS, MOCK_SCHEDULE, MOCK_METRICS } from './data/mockState';
-import type { Task } from './types';
+import { 
+  fetchTasks, 
+  updateTask as apiUpdateTask, 
+  fetchSchedule, 
+  fetchMetrics, 
+  updateMetrics as apiUpdateMetrics 
+} from './api/dashboard';
+import type { Task, ScheduleItem, DashboardMetrics } from './types';
+
+const DEFAULT_METRICS: DashboardMetrics = {
+  deepWorkSecondsToday: 0,
+  tasksCompletedToday: 0,
+  currentStreakDays: 0,
+  bottleneckAgeDays: 0,
+  apiUsageRate: 0,
+  currentSpendToday: 0
+};
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
-  const [metrics, setMetrics] = useState(MOCK_METRICS);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [schedule, setSchedule] = useState<ScheduleItem[]>([]);
+  const [metrics, setMetrics] = useState<DashboardMetrics>(DEFAULT_METRICS);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch all data on mount
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setLoading(true);
+        const [tasksData, scheduleData, metricsData] = await Promise.all([
+          fetchTasks(),
+          fetchSchedule(),
+          fetchMetrics()
+        ]);
+        setTasks(tasksData);
+        setSchedule(scheduleData);
+        setMetrics(metricsData);
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load data');
+        console.error('Failed to load data:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   const primaryTask = tasks.find(t => t.status === 'in_progress') || null;
   const urgentQueueTasks = tasks.filter(t => t.status !== 'in_progress' && t.status !== 'completed');
 
-  const promoteTask = (taskId: string) => {
+  const promoteTask = useCallback(async (taskId: string) => {
+    // Optimistic update
     setTasks(prevTasks => prevTasks.map(task => {
-      if (task.id === taskId) return { ...task, status: 'in_progress' };
-      if (task.status === 'in_progress') return { ...task, status: 'todo' };
+      if (task.id === taskId) return { ...task, status: 'in_progress' as const };
+      if (task.status === 'in_progress') return { ...task, status: 'todo' as const };
       return task;
     }));
-  };
 
-  const updateTaskTitle = (taskId: string, newTitle: string) => {
+    // Sync to API
+    try {
+      const currentPrimary = tasks.find(t => t.status === 'in_progress');
+      if (currentPrimary) {
+        await apiUpdateTask({ id: currentPrimary.id, status: 'todo' });
+      }
+      await apiUpdateTask({ id: taskId, status: 'in_progress' });
+    } catch (err) {
+      console.error('Failed to promote task:', err);
+    }
+  }, [tasks]);
+
+  const updateTaskTitle = useCallback(async (taskId: string, newTitle: string) => {
     setTasks(prevTasks => prevTasks.map(task =>
       task.id === taskId ? { ...task, title: newTitle } : task
     ));
-  };
+    try {
+      await apiUpdateTask({ id: taskId, title: newTitle });
+    } catch (err) {
+      console.error('Failed to update task title:', err);
+    }
+  }, []);
 
-  const toggleUrgent = (taskId: string) => {
-    setTasks(prevTasks => prevTasks.map(task =>
-      task.id === taskId ? { ...task, isUrgent: !task.isUrgent } : task
+  const toggleUrgent = useCallback(async (taskId: string) => {
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) return;
+    
+    setTasks(prevTasks => prevTasks.map(t =>
+      t.id === taskId ? { ...t, isUrgent: !t.isUrgent } : t
     ));
-  };
+    try {
+      await apiUpdateTask({ id: taskId, isUrgent: !task.isUrgent });
+    } catch (err) {
+      console.error('Failed to toggle urgent:', err);
+    }
+  }, [tasks]);
 
-  const markComplete = (taskId: string) => {
+  const markComplete = useCallback(async (taskId: string) => {
     setTasks(prevTasks => prevTasks.map(task =>
-      task.id === taskId ? { ...task, status: 'completed' } : task
+      task.id === taskId ? { ...task, status: 'completed' as const } : task
     ));
+    const newCompletedCount = metrics.tasksCompletedToday + 1;
     setMetrics(prev => ({
       ...prev,
-      tasksCompletedToday: prev.tasksCompletedToday + 1
+      tasksCompletedToday: newCompletedCount
     }));
-  };
+    
+    try {
+      await apiUpdateTask({ id: taskId, status: 'completed' });
+      await apiUpdateMetrics({ tasksCompletedToday: newCompletedCount });
+    } catch (err) {
+      console.error('Failed to mark complete:', err);
+    }
+  }, [metrics.tasksCompletedToday]);
 
-  const handleSessionLog = (taskId: string, durationSeconds: number) => {
+  const handleSessionLog = useCallback(async (taskId: string, durationSeconds: number) => {
     console.log(`Session logged for task ${taskId}: ${durationSeconds}s`);
-    // In a real app we'd save this to `FocusSession` array
+    const newDeepWork = metrics.deepWorkSecondsToday + durationSeconds;
     setMetrics(prev => ({
       ...prev,
-      deepWorkSecondsToday: prev.deepWorkSecondsToday + durationSeconds
+      deepWorkSecondsToday: newDeepWork
     }));
-  };
+    try {
+      await apiUpdateMetrics({ deepWorkSecondsToday: newDeepWork });
+    } catch (err) {
+      console.error('Failed to log session:', err);
+    }
+  }, [metrics.deepWorkSecondsToday]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div style={{ padding: 'var(--spacing-xl)', textAlign: 'center' }}>
+          Loading dashboard...
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <div style={{ padding: 'var(--spacing-xl)', textAlign: 'center', color: 'var(--status-error)' }}>
+          Error: {error}
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -75,7 +175,7 @@ function App() {
           onPromoteTask={promoteTask}
         />
 
-        <Schedule items={MOCK_SCHEDULE} />
+        <Schedule items={schedule} />
       </aside>
 
       <div className="dashboard-bottom">
