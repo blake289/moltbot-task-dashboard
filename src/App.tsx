@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Layout } from './components/layout/Layout';
-import { PrimaryBottleneck } from './components/dashboard/PrimaryBottleneck';
+import { FocusSection } from './components/dashboard/FocusSection';
 import { UrgentQueue } from './components/dashboard/UrgentQueue';
 import { Schedule } from './components/dashboard/Schedule';
 import { MetricsStrip } from './components/dashboard/MetricsStrip';
@@ -192,10 +192,12 @@ function App() {
     <Layout>
       {/* FOCUS TASK - TOP OF PAGE */}
       <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-xl)' }}>
-        <PrimaryBottleneck
-          task={primaryTask}
+        <FocusSection
+          currentTask={primaryTask}
+          nextTasks={urgentQueueTasks}
           onUpdateTitle={(title) => primaryTask && updateTaskTitle(primaryTask.id, title)}
           onSessionLog={handleSessionLog}
+          onCompleteTask={markComplete}
           totalTimeTodaySeconds={metrics.deepWorkSecondsToday}
         />
       </div>
