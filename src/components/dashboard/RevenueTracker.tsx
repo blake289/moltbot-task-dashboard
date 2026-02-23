@@ -41,27 +41,34 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
 
     // Revenue metrics - biggest
     const revenueMetrics = [
-        { label: 'Revenue', value: formatCurrency(metrics.revenue || 0), highlight: true, big: true },
-        { label: 'ROAS', value: metrics.adSpend > 0 ? `${((metrics.revenue || 0) / metrics.adSpend).toFixed(1)}x` : '0x', highlight: (metrics.revenue || 0) > metrics.adSpend, big: true },
+        { label: 'Revenue', value: formatCurrency(metrics.revenue || 0), highlight: true },
+        { label: 'ROAS', value: metrics.adSpend > 0 ? `${((metrics.revenue || 0) / metrics.adSpend).toFixed(1)}x` : '0x', highlight: (metrics.revenue || 0) > metrics.adSpend },
     ];
 
     return (
-        <div className="card">
-            <div className="flex items-center justify-between mb-lg">
-                <h3 className="font-bold text-lg">📊 Funnel KPIs</h3>
-                <span className="text-tertiary text-xs">
+        <div className="card" style={{ padding: 'var(--spacing-xl)' }}>
+            <div className="flex items-center justify-between" style={{ marginBottom: 'var(--spacing-xl)' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>📊 Funnel KPIs</h3>
+                <span className="text-tertiary" style={{ fontSize: '12px' }}>
                     Updated: {new Date(metrics.lastUpdated).toLocaleString()}
                 </span>
             </div>
 
+            {/* Section Label */}
+            <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    Top of Funnel
+                </span>
+            </div>
+
             {/* Primary Metrics - Top of Funnel */}
-            <div className="flex gap-lg mb-lg flex-wrap">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-xxl)' }}>
                 {primaryMetrics.map((stat, idx) => (
-                    <div key={idx} className="flex flex-col items-start" style={{ minWidth: '100px' }}>
-                        <span className="text-tertiary text-xs uppercase tracking-wider mb-xs">
+                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                        <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
-                        <span className="font-bold tabular-nums" style={{ fontSize: '28px', lineHeight: 1 }}>
+                        <span className="font-bold tabular-nums" style={{ fontSize: '32px', lineHeight: 1.1 }}>
                             {stat.value}
                         </span>
                     </div>
@@ -69,35 +76,52 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
             </div>
 
             {/* Divider */}
-            <div style={{ borderTop: '1px solid var(--border-subtle)', margin: 'var(--spacing-md) 0' }} />
+            <div style={{ borderTop: '1px solid var(--border-subtle)', margin: 'var(--spacing-lg) 0 var(--spacing-xl)' }} />
+
+            {/* Section Label */}
+            <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    Conversion
+                </span>
+            </div>
 
             {/* Conversion Metrics */}
-            <div className="flex gap-lg mb-lg flex-wrap">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-xxl)' }}>
                 {conversionMetrics.map((stat, idx) => (
-                    <div key={idx} className="flex flex-col items-start" style={{ minWidth: '80px' }}>
-                        <span className="text-tertiary text-xs uppercase tracking-wider mb-xs">
+                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                        <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
                         <span 
                             className={`font-bold tabular-nums ${stat.highlight ? 'text-success' : ''}`}
-                            style={{ fontSize: '24px', lineHeight: 1 }}
+                            style={{ fontSize: '28px', lineHeight: 1.1 }}
                         >
                             {stat.value}
                         </span>
                     </div>
                 ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ borderTop: '1px solid var(--border-subtle)', margin: 'var(--spacing-lg) 0 var(--spacing-xl)' }} />
+
+            {/* Section Label */}
+            <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    Close
+                </span>
             </div>
 
             {/* Close Metrics */}
-            <div className="flex gap-lg mb-lg flex-wrap">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-xxl)' }}>
                 {closeMetrics.map((stat, idx) => (
-                    <div key={idx} className="flex flex-col items-start" style={{ minWidth: '80px' }}>
-                        <span className="text-tertiary text-xs uppercase tracking-wider mb-xs">
+                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                        <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
                         <span 
                             className={`font-bold tabular-nums ${stat.highlight ? 'text-success' : ''}`}
-                            style={{ fontSize: '24px', lineHeight: 1 }}
+                            style={{ fontSize: '28px', lineHeight: 1.1 }}
                         >
                             {stat.value}
                         </span>
@@ -106,18 +130,25 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
             </div>
 
             {/* Divider */}
-            <div style={{ borderTop: '1px solid var(--border-subtle)', margin: 'var(--spacing-md) 0' }} />
+            <div style={{ borderTop: '2px solid var(--border-subtle)', margin: 'var(--spacing-lg) 0 var(--spacing-xl)' }} />
+
+            {/* Section Label */}
+            <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    Bottom Line
+                </span>
+            </div>
 
             {/* Revenue - Biggest */}
-            <div className="flex gap-xl flex-wrap">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--spacing-xxl)' }}>
                 {revenueMetrics.map((stat, idx) => (
-                    <div key={idx} className="flex flex-col items-start" style={{ minWidth: '120px' }}>
-                        <span className="text-tertiary text-xs uppercase tracking-wider mb-xs">
+                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                        <span className="text-secondary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
                         <span 
                             className={`font-bold tabular-nums ${stat.highlight ? 'text-success' : ''}`}
-                            style={{ fontSize: '36px', lineHeight: 1 }}
+                            style={{ fontSize: '48px', lineHeight: 1 }}
                         >
                             {stat.value}
                         </span>

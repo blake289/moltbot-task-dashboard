@@ -16,16 +16,16 @@ export const QuickLinks: React.FC<QuickLinksProps> = ({ links }) => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="card flex items-center gap-sm hover-bg"
+                    className="card flex items-center gap-md hover-bg"
                     style={{
-                        padding: 'var(--spacing-sm) var(--spacing-md)',
+                        padding: 'var(--spacing-md) var(--spacing-lg)',
                         textDecoration: 'none',
                         transition: 'all var(--transition-fast)'
                     }}
                 >
-                    {link.icon && <span style={{ fontSize: '16px' }}>{link.icon}</span>}
-                    <span className="text-sm font-medium">{link.label}</span>
-                    <span className="text-tertiary text-xs">↗</span>
+                    {link.icon && <span style={{ fontSize: '18px' }}>{link.icon}</span>}
+                    <span style={{ fontSize: '14px', fontWeight: 500 }}>{link.label}</span>
+                    <span className="text-tertiary" style={{ fontSize: '12px', marginLeft: '4px' }}>↗</span>
                 </a>
             ))}
         </div>

@@ -178,12 +178,12 @@ function App() {
   return (
     <Layout>
       {/* Quick Links Bar */}
-      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-md)' }}>
+      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-lg)' }}>
         <QuickLinks links={quickLinks} />
       </div>
 
       {/* Revenue Tracker */}
-      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-md)' }}>
+      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-xl)' }}>
         <RevenueTracker metrics={leadMetrics} />
       </div>
 
