@@ -56,7 +56,13 @@ export const PrimaryBottleneck: React.FC<PrimaryBottleneckProps> = ({
     const isComplete = task.status === 'completed';
 
     return (
-        <section className="card flex flex-col h-full relative overflow-hidden" style={{ minHeight: '520px', padding: 'var(--spacing-xl)', backgroundColor: '#1f1a2e', border: '1px solid #3d2e5a' }}>
+        <section className="card flex flex-col h-full relative overflow-hidden" style={{ 
+            minHeight: '520px', 
+            padding: 'var(--spacing-xl)', 
+            backgroundColor: '#251d38', 
+            border: '2px solid #5a3d8a',
+            boxShadow: '0 0 40px rgba(138, 79, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.05)'
+        }}>
             {/* Background active pulse indicator if running */}
             {timerStatus === 'running' && (
                 <div style={{
@@ -72,7 +78,17 @@ export const PrimaryBottleneck: React.FC<PrimaryBottleneckProps> = ({
                 <header className="flex items-start justify-between mb-xl">
                     <div>
                         <div className="flex items-center gap-sm mb-md">
-                            <span className="pill text-xs">FOCUS TARGET</span>
+                            <span style={{ 
+                                padding: '6px 14px', 
+                                borderRadius: '6px', 
+                                fontSize: '12px', 
+                                fontWeight: 700, 
+                                textTransform: 'uppercase', 
+                                letterSpacing: '0.1em',
+                                backgroundColor: '#7c3aed',
+                                color: '#fff',
+                                boxShadow: '0 2px 8px rgba(124, 58, 237, 0.4)'
+                            }}>🎯 FOCUS TARGET</span>
                             {task.isUrgent && <span className="pill urgent text-xs">URGENT</span>}
                         </div>
 
