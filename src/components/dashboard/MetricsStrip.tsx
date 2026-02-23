@@ -34,12 +34,12 @@ export const MetricsStrip: React.FC<MetricsStripProps> = ({ metrics }) => {
         { label: 'Deep Work Today', value: formatDuration(metrics.deepWorkSecondsToday) },
         { label: 'Tasks Completed', value: metrics.tasksCompletedToday.toString() },
         {
-            label: 'API Usage Rate',
-            value: `${liveApiRate} rpm`,
+            label: 'API Usage Rate (Mock)',
+            value: `${liveApiRate} Req / Min`,
             live: true
         },
         {
-            label: 'Current Spend',
+            label: 'Current Spend (Mock)',
             value: `$${liveSpend.toFixed(2)}`,
             live: true
         }
