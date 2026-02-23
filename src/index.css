@@ -38,6 +38,7 @@
 
 body {
     font-family: var(--font-family);
+    font-size: 16px;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.5;
@@ -228,15 +229,15 @@ h6 {
 }
 
 .text-xs {
-    font-size: 12px;
-}
-
-.text-sm {
     font-size: 14px;
 }
 
+.text-sm {
+    font-size: 15px;
+}
+
 .text-lg {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .bg-transparent {
@@ -287,9 +288,9 @@ h6 {
 .pill {
     display: inline-flex;
     align-items: center;
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: 9999px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
