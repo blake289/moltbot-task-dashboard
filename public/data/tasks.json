@@ -3,44 +3,48 @@
         "id": "t-1",
         "title": "Create Ad Creatives (3 ads for Ad Set 1)",
         "client": "LeakProof System",
+        "project": "LeakProof",
         "dueDate": "2026-02-24T00:00:00Z",
         "isUrgent": true,
         "status": "in_progress",
+        "notes": "3 angles: Pain/Problem, Outcome/Vision, Risk Reversal/Proof",
         "createdAt": "2026-02-23T04:00:00Z",
-        "updatedAt": "2026-02-23T04:00:00Z",
-        "notes": "3 angles: Pain/Problem, Outcome/Vision, Risk Reversal/Proof"
+        "updatedAt": "2026-02-23T04:00:00Z"
     },
     {
         "id": "t-2",
         "title": "Finalize Facebook Ad Sets",
         "client": "LeakProof System",
+        "project": "LeakProof",
         "dueDate": "2026-02-24T00:00:00Z",
         "isUrgent": true,
         "status": "todo",
+        "notes": "2 ad sets, upload creatives once done",
         "createdAt": "2026-02-23T04:00:00Z",
-        "updatedAt": "2026-02-23T04:00:00Z",
-        "notes": "2 ad sets, upload creatives once done"
+        "updatedAt": "2026-02-23T04:00:00Z"
     },
     {
         "id": "t-3",
         "title": "Launch Facebook Ads",
         "client": "LeakProof System",
+        "project": "LeakProof",
         "dueDate": "2026-02-25T00:00:00Z",
         "isUrgent": false,
         "status": "todo",
+        "notes": "Go live once creatives approved",
         "createdAt": "2026-02-23T04:00:00Z",
-        "updatedAt": "2026-02-23T04:00:00Z",
-        "notes": "Go live once creatives approved"
+        "updatedAt": "2026-02-23T04:00:00Z"
     },
     {
         "id": "t-4",
         "title": "Set up lead intake system in GHL",
         "client": "LeakProof System",
+        "project": "LeakProof",
         "dueDate": "2026-02-26T00:00:00Z",
         "isUrgent": false,
         "status": "todo",
+        "notes": "Form submissions → pipeline → automated follow-up",
         "createdAt": "2026-02-23T04:00:00Z",
-        "updatedAt": "2026-02-23T04:00:00Z",
-        "notes": "Form submissions → pipeline → automated follow-up"
+        "updatedAt": "2026-02-23T04:00:00Z"
     }
 ]

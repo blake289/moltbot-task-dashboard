@@ -64,6 +64,12 @@ export const UrgentQueue: React.FC<UrgentQueueProps> = ({ tasks, onPromoteTask }
                                     {isOverdue ? 'Overdue' : new Date(task.dueDate).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
                                 </span>
                             </div>
+
+                            {task.notes && (
+                                <div className="text-xs mt-sm" style={{ color: 'var(--text-tertiary)', paddingLeft: '20px', fontStyle: 'italic' }}>
+                                    📝 {task.notes}
+                                </div>
+                            )}
                         </div>
                     );
                 })}

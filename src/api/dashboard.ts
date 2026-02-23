@@ -1,4 +1,4 @@
-import type { Task, ScheduleItem, DashboardMetrics } from '../types';
+import type { Task, ScheduleItem, DashboardMetrics, QuickLink, LeadMetrics } from '../types';
 
 const BASE_PATH = '/data';
 
@@ -17,6 +17,18 @@ export async function fetchSchedule(): Promise<ScheduleItem[]> {
 export async function fetchMetrics(): Promise<DashboardMetrics> {
     const res = await fetch(`${BASE_PATH}/metrics.json?t=${Date.now()}`);
     if (!res.ok) throw new Error('Failed to fetch metrics');
+    return res.json();
+}
+
+export async function fetchQuickLinks(): Promise<QuickLink[]> {
+    const res = await fetch(`${BASE_PATH}/quicklinks.json?t=${Date.now()}`);
+    if (!res.ok) throw new Error('Failed to fetch quick links');
+    return res.json();
+}
+
+export async function fetchLeadMetrics(): Promise<LeadMetrics> {
+    const res = await fetch(`${BASE_PATH}/leadmetrics.json?t=${Date.now()}`);
+    if (!res.ok) throw new Error('Failed to fetch lead metrics');
     return res.json();
 }
 

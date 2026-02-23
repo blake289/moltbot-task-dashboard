@@ -1,0 +1,26 @@
+[
+    {
+        "id": "ql-1",
+        "label": "LeakProof Landing",
+        "url": "https://omnipresent-plumber-lander-final.vercel.app/",
+        "icon": "🔧"
+    },
+    {
+        "id": "ql-2",
+        "label": "Facebook Ads Manager",
+        "url": "https://business.facebook.com/adsmanager",
+        "icon": "📊"
+    },
+    {
+        "id": "ql-3",
+        "label": "GoHighLevel",
+        "url": "https://app.gohighlevel.com/",
+        "icon": "⚡"
+    },
+    {
+        "id": "ql-4",
+        "label": "GitHub Repo",
+        "url": "https://github.com/blake289/moltbot-task-dashboard",
+        "icon": "💻"
+    }
+]

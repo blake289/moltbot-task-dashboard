@@ -55,9 +55,17 @@ export const TaskBacklog: React.FC<TaskBacklogProps> = ({
                                 backlogTasks.map((task) => (
                                     <tr key={task.id} className="group" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
                                         <td className="py-md pr-md">
-                                            <div className="flex items-center gap-sm">
-                                                <span className="font-medium text-sm">{task.title}</span>
-                                                {task.isUrgent && <span className="pill urgent hidden lg:inline-flex" style={{ transform: 'scale(0.8)', transformOrigin: 'left center' }}>Urgent</span>}
+                                            <div className="flex flex-col gap-xs">
+                                                <div className="flex items-center gap-sm">
+                                                    <span className="font-medium text-sm">{task.title}</span>
+                                                    {task.isUrgent && <span className="pill urgent hidden lg:inline-flex" style={{ transform: 'scale(0.8)', transformOrigin: 'left center' }}>Urgent</span>}
+                                                    {task.project && <span className="pill text-xs" style={{ transform: 'scale(0.8)', transformOrigin: 'left center' }}>{task.project}</span>}
+                                                </div>
+                                                {task.notes && (
+                                                    <span className="text-xs text-tertiary" style={{ fontStyle: 'italic' }}>
+                                                        📝 {task.notes}
+                                                    </span>
+                                                )}
                                             </div>
                                         </td>
                                         <td className="py-md text-sm text-secondary">{task.client}</td>

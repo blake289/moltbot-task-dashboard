@@ -5,14 +5,19 @@ import { UrgentQueue } from './components/dashboard/UrgentQueue';
 import { Schedule } from './components/dashboard/Schedule';
 import { MetricsStrip } from './components/dashboard/MetricsStrip';
 import { TaskBacklog } from './components/dashboard/TaskBacklog';
+import { QuickLinks } from './components/dashboard/QuickLinks';
+import { RevenueTracker } from './components/dashboard/RevenueTracker';
+import { CompletedToday } from './components/dashboard/CompletedToday';
 import { 
   fetchTasks, 
   updateTask as apiUpdateTask, 
   fetchSchedule, 
   fetchMetrics, 
-  updateMetrics as apiUpdateMetrics 
+  updateMetrics as apiUpdateMetrics,
+  fetchQuickLinks,
+  fetchLeadMetrics
 } from './api/dashboard';
-import type { Task, ScheduleItem, DashboardMetrics } from './types';
+import type { Task, ScheduleItem, DashboardMetrics, QuickLink, LeadMetrics } from './types';
 
 const DEFAULT_METRICS: DashboardMetrics = {
   deepWorkSecondsToday: 0,
@@ -23,10 +28,23 @@ const DEFAULT_METRICS: DashboardMetrics = {
   currentSpendToday: 0
 };
 
+const DEFAULT_LEAD_METRICS: LeadMetrics = {
+  totalLeads: 0,
+  leadsToday: 0,
+  adSpend: 0,
+  cpl: 0,
+  conversions: 0,
+  conversionRate: 0,
+  projectedRevenue: 0,
+  lastUpdated: new Date().toISOString()
+};
+
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [schedule, setSchedule] = useState<ScheduleItem[]>([]);
   const [metrics, setMetrics] = useState<DashboardMetrics>(DEFAULT_METRICS);
+  const [quickLinks, setQuickLinks] = useState<QuickLink[]>([]);
+  const [leadMetrics, setLeadMetrics] = useState<LeadMetrics>(DEFAULT_LEAD_METRICS);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,14 +53,18 @@ function App() {
     async function loadData() {
       try {
         setLoading(true);
-        const [tasksData, scheduleData, metricsData] = await Promise.all([
+        const [tasksData, scheduleData, metricsData, linksData, leadData] = await Promise.all([
           fetchTasks(),
           fetchSchedule(),
-          fetchMetrics()
+          fetchMetrics(),
+          fetchQuickLinks(),
+          fetchLeadMetrics()
         ]);
         setTasks(tasksData);
         setSchedule(scheduleData);
         setMetrics(metricsData);
+        setQuickLinks(linksData);
+        setLeadMetrics(leadData);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load data');
@@ -58,14 +80,12 @@ function App() {
   const urgentQueueTasks = tasks.filter(t => t.status !== 'in_progress' && t.status !== 'completed');
 
   const promoteTask = useCallback(async (taskId: string) => {
-    // Optimistic update
     setTasks(prevTasks => prevTasks.map(task => {
       if (task.id === taskId) return { ...task, status: 'in_progress' as const };
       if (task.status === 'in_progress') return { ...task, status: 'todo' as const };
       return task;
     }));
 
-    // Sync to API
     try {
       const currentPrimary = tasks.find(t => t.status === 'in_progress');
       if (currentPrimary) {
@@ -103,8 +123,9 @@ function App() {
   }, [tasks]);
 
   const markComplete = useCallback(async (taskId: string) => {
+    const now = new Date().toISOString();
     setTasks(prevTasks => prevTasks.map(task =>
-      task.id === taskId ? { ...task, status: 'completed' as const } : task
+      task.id === taskId ? { ...task, status: 'completed' as const, completedAt: now } : task
     ));
     const newCompletedCount = metrics.tasksCompletedToday + 1;
     setMetrics(prev => ({
@@ -156,6 +177,16 @@ function App() {
 
   return (
     <Layout>
+      {/* Quick Links Bar */}
+      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-md)' }}>
+        <QuickLinks links={quickLinks} />
+      </div>
+
+      {/* Revenue Tracker */}
+      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-md)' }}>
+        <RevenueTracker metrics={leadMetrics} />
+      </div>
+
       <main className="dashboard-main col-span-1 border-r" style={{ gridColumn: '1', borderRight: '1px solid var(--border-subtle)', paddingRight: 'var(--spacing-xl)' }}>
         <PrimaryBottleneck
           task={primaryTask}
@@ -166,6 +197,11 @@ function App() {
 
         <div className="mt-xl">
           <MetricsStrip metrics={metrics} />
+        </div>
+
+        {/* Completed Today */}
+        <div className="mt-xl">
+          <CompletedToday tasks={tasks} />
         </div>
       </main>
 
