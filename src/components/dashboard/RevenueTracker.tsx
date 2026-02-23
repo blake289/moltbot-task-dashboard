@@ -62,9 +62,17 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
             </div>
 
             {/* Primary Metrics - Top of Funnel */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-xxl)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-lg)', marginBottom: 'var(--spacing-xxl)' }}>
                 {primaryMetrics.map((stat, idx) => (
-                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                    <div key={idx} style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: 'var(--spacing-sm)',
+                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: 'var(--radius-md)',
+                        padding: 'var(--spacing-lg)'
+                    }}>
                         <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
@@ -86,9 +94,17 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
             </div>
 
             {/* Conversion Metrics */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-xxl)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-lg)', marginBottom: 'var(--spacing-xxl)' }}>
                 {conversionMetrics.map((stat, idx) => (
-                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                    <div key={idx} style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: 'var(--spacing-sm)',
+                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: 'var(--radius-md)',
+                        padding: 'var(--spacing-lg)'
+                    }}>
                         <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
@@ -113,9 +129,17 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
             </div>
 
             {/* Close Metrics */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-xxl)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-lg)', marginBottom: 'var(--spacing-xxl)' }}>
                 {closeMetrics.map((stat, idx) => (
-                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                    <div key={idx} style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: 'var(--spacing-sm)',
+                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: 'var(--radius-md)',
+                        padding: 'var(--spacing-lg)'
+                    }}>
                         <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
@@ -140,9 +164,17 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
             </div>
 
             {/* Revenue - Biggest */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--spacing-xxl)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--spacing-xl)' }}>
                 {revenueMetrics.map((stat, idx) => (
-                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                    <div key={idx} style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: 'var(--spacing-md)',
+                        backgroundColor: 'rgba(255,255,255,0.05)',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: 'var(--radius-lg)',
+                        padding: 'var(--spacing-xl)'
+                    }}>
                         <span className="text-secondary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
