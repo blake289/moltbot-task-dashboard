@@ -115,7 +115,7 @@ export const FocusSection: React.FC<FocusSectionProps> = ({
                             <input
                                 autoFocus
                                 className="font-bold w-full bg-transparent text-primary"
-                                style={{ fontSize: '28px', letterSpacing: '-0.02em', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px' }}
+                                style={{ fontSize: '36px', letterSpacing: '-0.025em', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px' }}
                                 value={editTitle}
                                 onChange={(e) => setEditTitle(e.target.value)}
                                 onBlur={handleTitleSubmit}
@@ -124,16 +124,16 @@ export const FocusSection: React.FC<FocusSectionProps> = ({
                         ) : (
                             <h2
                                 className="font-bold cursor-pointer"
-                                style={{ fontSize: '28px', letterSpacing: '-0.02em', lineHeight: 1.3 }}
+                                style={{ fontSize: '36px', letterSpacing: '-0.025em', lineHeight: 1.25 }}
                                 onClick={() => setIsEditing(true)}
                             >
                                 {currentTask.title}
-                                <Edit2 size={16} className="inline-block ml-sm opacity-0 group-hover:opacity-50 transition-fast" />
+                                <Edit2 size={18} className="inline-block ml-sm opacity-0 group-hover:opacity-50 transition-fast" />
                             </h2>
                         )}
                     </div>
 
-                    <div className="flex items-center gap-md text-secondary" style={{ fontSize: '16px', marginBottom: 'var(--spacing-xl)' }}>
+                    <div className="flex items-center gap-md text-secondary" style={{ fontSize: '18px', marginBottom: 'var(--spacing-xl)' }}>
                         <span>{currentTask.client}</span>
                         <span style={{ opacity: 0.5 }}>•</span>
                         <span>Due: {new Date(currentTask.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
@@ -145,7 +145,7 @@ export const FocusSection: React.FC<FocusSectionProps> = ({
                             backgroundColor: 'rgba(255,255,255,0.05)', 
                             borderRadius: 'var(--radius-md)',
                             marginBottom: 'var(--spacing-xl)',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             color: 'var(--text-secondary)'
                         }}>
                             📝 {currentTask.notes}
@@ -193,7 +193,7 @@ export const FocusSection: React.FC<FocusSectionProps> = ({
                 flexDirection: 'column'
             }}>
                 <h3 style={{ 
-                    fontSize: '16px', 
+                    fontSize: '18px', 
                     fontWeight: 600, 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.1em',
@@ -236,10 +236,10 @@ export const FocusSection: React.FC<FocusSectionProps> = ({
                                     {idx === 0 ? '→' : <Lock size={14} />}
                                 </div>
                                 <div style={{ flex: 1 }}>
-                                    <div style={{ fontSize: '15px', fontWeight: 500, marginBottom: '4px' }}>
+                                    <div style={{ fontSize: '17px', fontWeight: 500, marginBottom: '4px' }}>
                                         {task.title}
                                     </div>
-                                    <div style={{ fontSize: '13px', color: 'var(--text-tertiary)' }}>
+                                    <div style={{ fontSize: '15px', color: 'var(--text-tertiary)' }}>
                                         {task.client}
                                     </div>
                                 </div>
