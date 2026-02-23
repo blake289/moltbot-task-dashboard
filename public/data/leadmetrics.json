@@ -1,10 +1,23 @@
 {
+    "adSpend": 0,
+    "impressions": 0,
+    "clicks": 0,
+    "ctr": 0,
+    "landingPageViews": 0,
+    "formFills": 0,
+    "cpl": 0,
+    "bookings": 0,
+    "bookingRate": 0,
+    "shows": 0,
+    "showRate": 0,
+    "closes": 0,
+    "closeRate": 0,
+    "revenue": 0,
+    "roas": 0,
     "totalLeads": 0,
     "leadsToday": 0,
-    "adSpend": 0,
-    "cpl": 0,
     "conversions": 0,
     "conversionRate": 0,
     "projectedRevenue": 0,
-    "lastUpdated": "2026-02-23T04:45:00Z"
+    "lastUpdated": "2026-02-23T04:54:00Z"
 }

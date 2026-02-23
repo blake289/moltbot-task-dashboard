@@ -37,13 +37,42 @@ export interface QuickLink {
 }
 
 export interface LeadMetrics {
+    // Ad metrics
+    adSpend: number;
+    impressions: number;
+    clicks: number;
+    ctr: number; // click-through rate
+    
+    // Landing page
+    landingPageViews: number;
+    
+    // Lead gen
+    formFills: number;
+    cpl: number; // cost per lead
+    
+    // Bookings
+    bookings: number;
+    bookingRate: number; // % of leads that book
+    
+    // Shows
+    shows: number;
+    showRate: number; // % that show up
+    
+    // Closes
+    closes: number;
+    closeRate: number; // % that close
+    
+    // Revenue
+    revenue: number;
+    roas: number; // return on ad spend
+    
+    // Legacy compat
     totalLeads: number;
     leadsToday: number;
-    adSpend: number;
-    cpl: number; // cost per lead
     conversions: number;
     conversionRate: number;
     projectedRevenue: number;
+    
     lastUpdated: string; // ISO string
 }
 
