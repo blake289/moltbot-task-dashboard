@@ -36,6 +36,19 @@ const DEFAULT_LEAD_METRICS: LeadMetrics = {
   conversions: 0,
   conversionRate: 0,
   projectedRevenue: 0,
+  impressions: 0,
+  clicks: 0,
+  ctr: 0,
+  landingPageViews: 0,
+  formFills: 0,
+  bookings: 0,
+  bookingRate: 0,
+  shows: 0,
+  showRate: 0,
+  closes: 0,
+  closeRate: 0,
+  revenue: 0,
+  roas: 0,
   lastUpdated: new Date().toISOString()
 };
 
@@ -177,41 +190,53 @@ function App() {
 
   return (
     <Layout>
-      {/* Quick Links Bar */}
-      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-lg)' }}>
-        <QuickLinks links={quickLinks} />
-      </div>
-
-      {/* Revenue Tracker */}
+      {/* FOCUS TASK - TOP OF PAGE */}
       <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-xl)' }}>
-        <RevenueTracker metrics={leadMetrics} />
-      </div>
-
-      <main className="dashboard-main col-span-1 border-r" style={{ gridColumn: '1', borderRight: '1px solid var(--border-subtle)', paddingRight: 'var(--spacing-xl)' }}>
         <PrimaryBottleneck
           task={primaryTask}
           onUpdateTitle={(title) => primaryTask && updateTaskTitle(primaryTask.id, title)}
           onSessionLog={handleSessionLog}
           totalTimeTodaySeconds={metrics.deepWorkSecondsToday}
         />
+      </div>
 
-        <div className="mt-xl">
+      {/* Quick Links Bar */}
+      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-lg)' }}>
+        <QuickLinks links={quickLinks} />
+      </div>
+
+      {/* Revenue Tracker - slightly different color */}
+      <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--spacing-xl)' }}>
+        <div style={{ backgroundColor: '#1a1925', borderRadius: 'var(--radius-lg)', border: '1px solid #2a2640' }}>
+          <RevenueTracker metrics={leadMetrics} />
+        </div>
+      </div>
+
+      <main className="dashboard-main col-span-1 border-r" style={{ gridColumn: '1', borderRight: '1px solid var(--border-subtle)', paddingRight: 'var(--spacing-xl)' }}>
+        {/* Metrics Strip - teal tint */}
+        <div style={{ backgroundColor: '#151a1f', borderRadius: 'var(--radius-lg)', padding: 'var(--spacing-lg)', border: '1px solid #1e2a32' }}>
           <MetricsStrip metrics={metrics} />
         </div>
 
-        {/* Completed Today */}
-        <div className="mt-xl">
+        {/* Completed Today - green tint */}
+        <div className="mt-xl" style={{ backgroundColor: '#151f1a', borderRadius: 'var(--radius-lg)', border: '1px solid #1e322a' }}>
           <CompletedToday tasks={tasks} />
         </div>
       </main>
 
       <aside className="dashboard-sidebar col-span-1" style={{ gridColumn: '2' }}>
-        <UrgentQueue
-          tasks={urgentQueueTasks}
-          onPromoteTask={promoteTask}
-        />
+        {/* Urgent Queue - red/warm tint */}
+        <div style={{ backgroundColor: '#1f1719', borderRadius: 'var(--radius-lg)', border: '1px solid #3a2428' }}>
+          <UrgentQueue
+            tasks={urgentQueueTasks}
+            onPromoteTask={promoteTask}
+          />
+        </div>
 
-        <Schedule items={schedule} />
+        {/* Schedule - blue tint */}
+        <div className="mt-xl" style={{ backgroundColor: '#171a1f', borderRadius: 'var(--radius-lg)', border: '1px solid #242a38' }}>
+          <Schedule items={schedule} />
+        </div>
       </aside>
 
       <div className="dashboard-bottom">

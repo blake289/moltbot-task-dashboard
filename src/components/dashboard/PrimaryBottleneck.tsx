@@ -56,7 +56,7 @@ export const PrimaryBottleneck: React.FC<PrimaryBottleneckProps> = ({
     const isComplete = task.status === 'completed';
 
     return (
-        <section className="card flex flex-col h-full relative overflow-hidden" style={{ minHeight: '520px', padding: 'var(--spacing-xl)' }}>
+        <section className="card flex flex-col h-full relative overflow-hidden" style={{ minHeight: '520px', padding: 'var(--spacing-xl)', backgroundColor: '#1f1a2e', border: '1px solid #3d2e5a' }}>
             {/* Background active pulse indicator if running */}
             {timerStatus === 'running' && (
                 <div style={{
