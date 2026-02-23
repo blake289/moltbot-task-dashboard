@@ -48,15 +48,15 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
     return (
         <div className="card" style={{ padding: 'var(--spacing-xl)' }}>
             <div className="flex items-center justify-between" style={{ marginBottom: 'var(--spacing-xl)' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>📊 Funnel KPIs</h3>
-                <span className="text-tertiary" style={{ fontSize: '12px' }}>
+                <h3 style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '0.01em' }}>📊 Funnel KPIs</h3>
+                <span className="text-tertiary" style={{ fontSize: '14px' }}>
                     Updated: {new Date(metrics.lastUpdated).toLocaleString()}
                 </span>
             </div>
 
             {/* Section Label */}
             <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                <span className="text-tertiary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                     Top of Funnel
                 </span>
             </div>
@@ -67,16 +67,16 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
                     <div key={idx} style={{ 
                         display: 'flex', 
                         flexDirection: 'column', 
-                        gap: 'var(--spacing-sm)',
+                        gap: 'var(--spacing-md)',
                         backgroundColor: 'rgba(255,255,255,0.03)',
                         border: '1px solid rgba(255,255,255,0.08)',
                         borderRadius: 'var(--radius-md)',
-                        padding: 'var(--spacing-lg)'
+                        padding: 'var(--spacing-xl)'
                     }}>
-                        <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        <span className="text-secondary" style={{ fontSize: '16px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
-                        <span className="font-bold tabular-nums" style={{ fontSize: '32px', lineHeight: 1.1 }}>
+                        <span className="font-bold tabular-nums" style={{ fontSize: '38px', lineHeight: 1.1 }}>
                             {stat.value}
                         </span>
                     </div>
@@ -88,7 +88,7 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
 
             {/* Section Label */}
             <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                <span className="text-tertiary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                     Conversion
                 </span>
             </div>
@@ -99,18 +99,18 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
                     <div key={idx} style={{ 
                         display: 'flex', 
                         flexDirection: 'column', 
-                        gap: 'var(--spacing-sm)',
+                        gap: 'var(--spacing-md)',
                         backgroundColor: 'rgba(255,255,255,0.03)',
                         border: '1px solid rgba(255,255,255,0.08)',
                         borderRadius: 'var(--radius-md)',
-                        padding: 'var(--spacing-lg)'
+                        padding: 'var(--spacing-xl)'
                     }}>
-                        <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        <span className="text-secondary" style={{ fontSize: '16px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
                         <span 
                             className={`font-bold tabular-nums ${stat.highlight ? 'text-success' : ''}`}
-                            style={{ fontSize: '28px', lineHeight: 1.1 }}
+                            style={{ fontSize: '34px', lineHeight: 1.1 }}
                         >
                             {stat.value}
                         </span>
@@ -123,7 +123,7 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
 
             {/* Section Label */}
             <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                <span className="text-tertiary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                     Close
                 </span>
             </div>
@@ -134,18 +134,18 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
                     <div key={idx} style={{ 
                         display: 'flex', 
                         flexDirection: 'column', 
-                        gap: 'var(--spacing-sm)',
+                        gap: 'var(--spacing-md)',
                         backgroundColor: 'rgba(255,255,255,0.03)',
                         border: '1px solid rgba(255,255,255,0.08)',
                         borderRadius: 'var(--radius-md)',
-                        padding: 'var(--spacing-lg)'
+                        padding: 'var(--spacing-xl)'
                     }}>
-                        <span className="text-secondary" style={{ fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        <span className="text-secondary" style={{ fontSize: '16px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
                         <span 
                             className={`font-bold tabular-nums ${stat.highlight ? 'text-success' : ''}`}
-                            style={{ fontSize: '28px', lineHeight: 1.1 }}
+                            style={{ fontSize: '34px', lineHeight: 1.1 }}
                         >
                             {stat.value}
                         </span>
@@ -158,7 +158,7 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
 
             {/* Section Label */}
             <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                <span className="text-tertiary" style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                <span className="text-tertiary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                     Bottom Line
                 </span>
             </div>
@@ -175,12 +175,12 @@ export const RevenueTracker: React.FC<RevenueTrackerProps> = ({ metrics }) => {
                         borderRadius: 'var(--radius-lg)',
                         padding: 'var(--spacing-xl)'
                     }}>
-                        <span className="text-secondary" style={{ fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        <span className="text-secondary" style={{ fontSize: '18px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             {stat.label}
                         </span>
                         <span 
                             className={`font-bold tabular-nums ${stat.highlight ? 'text-success' : ''}`}
-                            style={{ fontSize: '48px', lineHeight: 1 }}
+                            style={{ fontSize: '56px', lineHeight: 1 }}
                         >
                             {stat.value}
                         </span>
