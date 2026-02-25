@@ -29,26 +29,19 @@ const DEFAULT_METRICS: DashboardMetrics = {
 };
 
 const DEFAULT_LEAD_METRICS: LeadMetrics = {
-  totalLeads: 0,
-  leadsToday: 0,
   adSpend: 0,
-  cpl: 0,
-  conversions: 0,
-  conversionRate: 0,
-  projectedRevenue: 0,
-  impressions: 0,
-  clicks: 0,
-  ctr: 0,
-  landingPageViews: 0,
-  formFills: 0,
-  bookings: 0,
-  bookingRate: 0,
-  shows: 0,
+  newLeads: 0,
+  scheduledConsults: 0,
+  liveConsults: 0,
   showRate: 0,
   closes: 0,
   closeRate: 0,
-  revenue: 0,
-  roas: 0,
+  cac: 0,
+  aov: 0,
+  newContractedRevenue: 0,
+  upfrontCashCollected: 0,
+  totalCashCollected: 0,
+  netOperatingProfit: 0,
   lastUpdated: new Date().toISOString()
 };
 

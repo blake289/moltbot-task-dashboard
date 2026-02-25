@@ -2,30 +2,30 @@ export interface Task {
     id: string;
     title: string;
     client: string;
-    project?: string; // Project grouping
-    dueDate: string; // ISO string
-    dueTime?: string; // HH:MM
+    project?: string;
+    dueDate: string;
+    dueTime?: string;
     isUrgent: boolean;
     status: 'todo' | 'in_progress' | 'completed';
-    notes?: string; // Task notes
-    createdAt: string; // ISO string
-    updatedAt: string; // ISO string
-    completedAt?: string; // ISO string
+    notes?: string;
+    createdAt: string;
+    updatedAt: string;
+    completedAt?: string;
 }
 
 export interface FocusSession {
     id: string;
     taskId: string;
-    startTime: string; // ISO string
-    endTime?: string; // ISO string
+    startTime: string;
+    endTime?: string;
     durationSeconds: number;
 }
 
 export interface ScheduleItem {
     id: string;
     title: string;
-    startTime: string; // ISO string
-    endTime: string; // ISO string
+    startTime: string;
+    endTime: string;
     source: 'calendar' | 'manual';
 }
 
@@ -33,47 +33,34 @@ export interface QuickLink {
     id: string;
     label: string;
     url: string;
-    icon?: string; // emoji
+    icon?: string;
 }
 
 export interface LeadMetrics {
-    // Ad metrics
+    // Top of Funnel
     adSpend: number;
-    impressions: number;
-    clicks: number;
-    ctr: number; // click-through rate
+    newLeads: number;
     
-    // Landing page
-    landingPageViews: number;
+    // Pipeline
+    scheduledConsults: number;
+    liveConsults: number;
+    showRate: number; // Show %
     
-    // Lead gen
-    formFills: number;
-    cpl: number; // cost per lead
-    
-    // Bookings
-    bookings: number;
-    bookingRate: number; // % of leads that book
-    
-    // Shows
-    shows: number;
-    showRate: number; // % that show up
-    
-    // Closes
+    // Conversions
     closes: number;
-    closeRate: number; // % that close
+    closeRate: number; // Close %
+    
+    // Unit Economics
+    cac: number; // Customer Acquisition Cost
+    aov: number; // Average Order Value
     
     // Revenue
-    revenue: number;
-    roas: number; // return on ad spend
+    newContractedRevenue: number;
+    upfrontCashCollected: number;
+    totalCashCollected: number;
+    netOperatingProfit: number;
     
-    // Legacy compat
-    totalLeads: number;
-    leadsToday: number;
-    conversions: number;
-    conversionRate: number;
-    projectedRevenue: number;
-    
-    lastUpdated: string; // ISO string
+    lastUpdated: string;
 }
 
 export interface DashboardMetrics {
@@ -81,8 +68,8 @@ export interface DashboardMetrics {
     tasksCompletedToday: number;
     currentStreakDays: number;
     bottleneckAgeDays: number;
-    apiUsageRate: number; // requests per minute
-    currentSpendToday: number; // in dollars
+    apiUsageRate: number;
+    currentSpendToday: number;
 }
 
 export interface DashboardData {
